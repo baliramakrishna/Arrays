@@ -1,34 +1,36 @@
-/*package whatever //do not write package name here */
-
 import java.util.*;
 
 class SmallestSubarray{
+    
+    static int minSize(int a[],int k,int n){
+        
+        int s=0,e=0,sum=0,min=Integer.MAX_VALUE;
+        
+       while(e<n){
+           
+           while(sum<=k && e<n)
+           sum+=a[e++];
+           
+           while(s<n && sum>k){
+             
+               
+               if(e-s <min){
+                   min= e- s;
+               }
+                 sum-=a[s++];
+           }
+           
+           
+           
+       }
+        
+        return min;
+    }
 	public static void main (String[] args) {
 	    
-	    int a[]={1, 4, 45, 6, 0, 52};
+	    int a[]={1, 4, 45, 6, 0, 19};
 	    int k=51,n=a.length;
-	    int temp;int l=56326326,sum=0;
-	    for(int i=0;i<n-1;i++){
-	        sum=a[i];
-	        if(a[i]>k){ //any of the number may greater than the given number;
-	            l=1;
-	            break;
-	        }
-	        for(int j=i+1;j<n;j++){
-	            
-	            sum=sum+a[j];
-	            if(sum>k){
-	            temp=j-i+1;
-	           // System.out.println(temp+" "+i+" "+j);
-	            if(temp<l)
-	            l=temp;
-	            break;
-	            
-	            }
-	        }
-	    }
-	    if(a[n-1]>k)
-	    l=1;
-		System.out.println(l);
-	}
+	    System.out.println("smallest subarray length is "+minSize(a,k,n));
+	    
+}
 }
